@@ -1,0 +1,77 @@
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="static/style.css">
+</head> 
+<body style="background-color: rgb(210,210,210)">
+<div id="main">
+    <div id="logo">
+        meteo_via_sms
+    </div>
+    <div id="up">
+        <span class="point">URL</span><input type="text" name="url" size="60"><br>
+        <span class="point">Place:</span><br>
+        <span id="place"></span>
+    </div>
+    <form action="add" method="post">
+    <div id="down">
+        <div id="intensity" class="brick">
+            <span class="header">Intensity</span><br>
+            <input type="radio" name="intensity" value="24_hours"> 24 hours <br>
+            <input type="radio" name="intensity" value="2_days"> 2 days <br>
+            <input type="radio" name="intensity" value="5_hours"> 5 days <br>
+            <input type="radio" name="intensity" value="1_week"> 1 week <br>
+        </div>
+    
+        <div id="days_detailed" class="brick">
+            <span class="header"> Days detailed </span><br>
+            Number of days:
+            <select name="days_detailed_length">
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="4">5</option>
+                <option value="4">6</option>
+            </select><br>
+            <input type="checkbox" name="days_detailed" value="t_high"> Temperature high <br>
+            <input type="checkbox" name="days_detailed" value="t_low"> Temperature low <br>
+            <input type="checkbox" name="days_detailed" value="wind"> Wind <br>
+            <input type="checkbox" name="days_detailed" value="uv_index"> UV-index <br>
+            <input type="checkbox" name="days_detailed" value="sunshine"> Sunshine hours <br>
+            <input type="checkbox" name="days_detailed" value="precipitation"> Precipitation <br>
+        </div>
+
+        <div id="days_general" class="brick">
+            <span class="header"> Days general </span><br>
+            Number of days:
+            <select name="days_general_length">
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="4">5</option>
+                <option value="4">6</option>
+            </select><br>
+            <input type="checkbox" name="days_general" value="temp"> Temperature <br>
+            <input type="checkbox" name="days_general" value="temp_feels"> Temperature feels like <br>
+            <input type="checkbox" name="days_general" value="wind"> Wind <br>
+            <input type="checkbox" name="days_general" value="uv_index"> Wind gusts <br>
+            <input type="checkbox" name="days_general" value="humidity"> Humidity <br>
+            <input type="checkbox" name="days_general" value="precipitation"> Precipitation <br>
+            <input type="checkbox" name="days_general" value="precip_prob"> Precipitation probability <br>
+        </div>
+    </div>
+    <!--<ul id="summary">
+    <li>Predicted single message length:
+    <li>Predicted number of messages:
+    </ul>-->
+    <div id="add_button">
+        <input type="submit" value="Submit" id="submit-button"/>
+    </div>
+    </form>
+
+</div>
+
+</body>

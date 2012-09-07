@@ -1,0 +1,119 @@
+.brick {
+    background-color: rgb(240, 240, 240);
+    margin: 30px 30px 30px 30px;
+    padding: 20px 60px 20px 20px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    width: 20%;
+    height: 35%;
+}
+
+#logo {
+    font: Georgia, 'Times New Roman';
+    font-size: 50px;
+    color: rgb(3,204,170);
+    float: right;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-left: auto;
+    padding-right: 40px;
+    
+}
+
+#intensity {
+    float: left;
+    margin-right: 50px;
+    clear: left;
+}
+
+#days_detailed {
+    float: left;
+    margin-right: 50px;
+}
+
+#days_general {
+    float: left;
+    clear: right;
+}
+
+.header {
+    font-size: 20px;
+    text-decoration: bold;
+    margin-bottom: 50px;
+    margin-top: 15px;
+    margin-bottom: 50px;
+    margin-left: 40px;
+    margin-right: 70px;
+}
+
+#up {
+    margin-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 30px;
+    padding-left: 30px;
+    background-color: rgb(200,200,200);
+    clear: both;
+    height: 100px;
+}
+
+#main {
+    width: 100%;
+    display: block;
+}
+
+#down {
+    margin-left: auto;
+    padding-left: auto;
+    padding-right: auto;
+    margin-right: auto;
+    width: 100%;
+    clear: both;
+}
+
+#add_button {
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: auto;
+    padding-right: auto;
+    margin-top: 200px;
+    text-align: center;
+    clear: both;
+}
+
+#main {
+    background-color: rgb(246,246,246);
+    color: rgb(50, 50, 50);
+    font-size: 15px;
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+#summary {
+    clear: both
+}
+
+input#submit-button {
+    cursor: pointer;
+    outline: none;
+    background-color: white;
+    color: #3C3C46;
+}
+
+input#submit-button:hover {
+    background-color: rgb(200,200,200);
+    color: white;
+}
+
+textarea, select, input {
+    color: #667;
+    padding: 7px;
+    border: 1px solid #CCC;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    -webkit-transition: all 0.4s ease-in-out;
+    -moz-transition: all 0.4s ease-in-out;
+    -o-transition: all 0.4s ease-in-out;
+}
+
