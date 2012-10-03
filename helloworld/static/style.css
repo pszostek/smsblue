@@ -1,12 +1,12 @@
 .brick {
     background-color: rgb(240, 240, 240);
-    margin: 30px 30px 30px 30px;
-    padding: 20px 60px 20px 20px;
+    margin: 30px 20px 30px 20px;
+    padding: 20px 20px 30px 20px;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     border-radius: 10px;
-    width: 20%;
-    height: 35%;
+    width: 25%;
+    /*height: 40%;*/
 }
 
 #logo {
@@ -16,15 +16,20 @@
     float: right;
     padding-top: 15px;
     padding-bottom: 15px;
-    padding-left: auto;
     padding-right: 40px;
     
 }
-
+.right_select {
+    float: right;
+    width: 45%;
+}
 #intensity {
     float: left;
+    width: 45%;
+}
+#timing {
     margin-right: 50px;
-    clear: left;
+    float: left;
 }
 
 #days_detailed {
@@ -37,25 +42,38 @@
     clear: right;
 }
 
-.header {
-    font-size: 20px;
-    text-decoration: bold;
-    margin-bottom: 50px;
-    margin-top: 15px;
-    margin-bottom: 50px;
-    margin-left: 40px;
-    margin-right: 70px;
+.point {
 }
 
-#up {
+div.header {
+    font-size: 20pt;
+    text-decoration: bold;
+    text-align: center;
+    margin: 15px auto 15px auto;
+    clear: right;
+    width: 100%;
+}
+
+td.righty {
+    text-align: right
+}
+
+ul
+{
+    list-style-type: none;
+    padding: 0;
+    margin-left: 0;
+}
+
+div#up {
     margin-top: 50px;
     margin-left: auto;
     margin-right: auto;
     padding-top: 30px;
     padding-left: 30px;
+    padding-bottom: 25px;
     background-color: rgb(200,200,200);
     clear: both;
-    height: 100px;
 }
 
 #main {
@@ -64,22 +82,9 @@
 }
 
 #down {
-    margin-left: auto;
-    padding-left: auto;
-    padding-right: auto;
-    margin-right: auto;
     width: 100%;
     clear: both;
-}
-
-#add_button {
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: auto;
-    padding-right: auto;
-    margin-top: 200px;
-    text-align: center;
-    clear: both;
+    padding-bottom: 50px;
 }
 
 #main {
@@ -94,10 +99,16 @@
 }
 
 input#submit-button {
+    margin: 150px auto 50px auto;
+    text-align: center;
+   /* float: left;
+   */
     cursor: pointer;
     outline: none;
     background-color: white;
     color: #3C3C46;
+    display: block;
+    float:none;
 }
 
 input#submit-button:hover {

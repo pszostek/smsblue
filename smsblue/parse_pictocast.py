@@ -8,6 +8,7 @@ import datetime
 
 HourEntry = namedtuple("HourEntry", ["hour", "weather"], verbose=False)
 
+
 class DaytimeWeather(object):
     def __init__(self, temp=None, temp_like=None, wind=None, wind_gusts=None, humid=None, precip=None, precip_prob=None):
         self.temp = temp
