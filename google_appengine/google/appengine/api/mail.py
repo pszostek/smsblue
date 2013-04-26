@@ -178,13 +178,7 @@ EXTENSION_BLACKLIST = [
 
 HEADER_WHITELIST = frozenset([
     'In-Reply-To',
-    'List-Id',
-    'List-Unsubscribe',
-    'On-Behalf-Of',
     'References',
-    'Resent-Date',
-    'Resent-From',
-    'Resent-To',
     ])
 
 

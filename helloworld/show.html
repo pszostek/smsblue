@@ -1,0 +1,139 @@
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="static/style.css">
+</head> 
+<body style="background-color: rgb(210,210,210)">
+<div id="main">
+    <div id="logo">
+        meteo_via_sms
+    </div>
+    {{ user }}
+    <div id="up">
+        <span class="point">URL</span><input type="text" name="url" size="120"><br>
+        <span class="point">Place:</span><br>
+        <span id="place"></span>
+    </div>
+    <form action="add" method="post">
+    <div id="down">
+        <div id="timing" class="brick">
+            <div class="header">Timing</div>
+            <div class="right_select">
+                <span>Hour</span>
+                <select name="timing_hour">
+                    <option value="00">00</option>
+                    <option value="01">01</option>
+                    <option value="02">02</option>
+                    <option value="03">03</option>
+                    <option value="04">04</option>
+                    <option value="05">05</option>
+                    <option value="06">06</option>
+                    <option value="07">07</option>
+                    <option value="08">08</option>
+                    <option value="09">09</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                    <option value="13">13</option>
+                    <option value="14">14</option>
+                    <option value="15">15</option>
+                    <option value="16">16</option>
+                    <option value="17">17</option>
+                    <option value="18">18</option>
+                    <option value="19">19</option>
+                    <option value="20">20</option>
+                    <option value="21">21</option>
+                    <option value="22">22</option>
+                    <option value="23">23</option>
+                </select><br>
+                <span>Minutes</span> <select name="timing_minutes">
+                    <option value="00">00</option>
+                    <option value="10">10</option>
+                    <option value="20">20</option>
+                    <option value="30">30</option>
+                    <option value="40">40</option>
+                    <option value="50">50</option>
+                    <option value="60">60</option>
+                </select>
+            </div>
+                <ul>
+                    <li><input type="radio" name="intensity" value="24_hours"> 24 hours <br>
+                    <li><input type="radio" name="intensity" value="2_days"> 2 days <br>
+                    <li><input type="radio" name="intensity" value="5_hours"> 5 days <br>
+                    <li><input type="radio" name="intensity" value="1_week"> 1 week <br>
+                </ul>
+        </div>
+        <div id="days_general" class="brick">
+            <div class="header"> Days general </div>
+            <div class="right_select">
+                Number of days:
+                <select name="days_general_length">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="4">5</option>
+                    <option value="4">6</option>
+                </select>
+            </div>
+            <ul>
+                <li><input type="checkbox" name="days_general" {% if notification.general_t_high %} checked="checked" {% endif %} value="t_high"> Temperature high <br>
+                <li><input type="checkbox" name="days_general" {% if notification.general_t_low %} checked="checked" {% endif %} value="t_low"> Temperature low <br>
+                <li><input type="checkbox" name="days_general" {% if notification.general_wind %} checked="checked" {% endif %} value="wind"> Wind <br>
+                <li><input type="checkbox" name="days_general" {% if notification.general_uv_index %} checked="checked" {% endif %} value="uv_index"> UV-index <br>
+                <li><input type="checkbox" name="days_general" {% if notification.general_sunshine %} checked="checked" {% endif %} value="sunshine"> Sunshine hours <br>
+                <li><input type="checkbox" name="days_general" {% if notification.general_precipitation %} checked="checked" {% endif %}  value="precipitation"> Precipitation <br>
+            </ul>
+        </div>
+
+        <div id="days_detailed" class="brick">
+            <div class="header"> Days detailed </div>
+            <div class="right_select">
+                Number of days:
+                <div style="clear: right">
+                    <select name="days_detailed_length">
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="4">5</option>
+                        <option value="4">6</option>
+                    </select>
+                </div>
+                <div>
+                    Selected hours:
+                    <ul>
+                        <li><input type="checkbox" name="detailed_hours" value="2">2:00
+                        <li><input type="checkbox" name="detailed_hours" value="5">5:00
+                        <li><input type="checkbox" name="detailed_hours" value="8">8:00
+                        <li><input type="checkbox" name="detailed_hours" value="11">11:00
+                        <li><input type="checkbox" name="detailed_hours" value="14">14:00
+                        <li><input type="checkbox" name="detailed_hours" value="17">17:00
+                        <li><input type="checkbox" name="detailed_hours" value="20">20:00
+                        <li><input type="checkbox" name="detailed_hours" value="23">23:00
+                    </ul>
+                </div>
+            </div>
+            <ul>
+                <li><input type="checkbox" name="days_detailed" value="temp"> Temperature 
+                <li><input type="checkbox" name="days_detailed" value="temp_feels"> Temperature feels like 
+                <li><input type="checkbox" name="days_detailed" value="wind"> Wind 
+                <li><input type="checkbox" name="days_detailed" value="uv_index"> Wind gusts
+                <li><input type="checkbox" name="days_detailed" value="humidity"> Humidity
+                <li><input type="checkbox" name="days_detailed" value="precipitation"> Precipitation
+                <li><input type="checkbox" name="days_detailed" value="precip_prob"> Precipitation probability
+            </ul>
+        </div>
+        </div>
+    </div>
+    <!--<ul id="summary">
+    <li>Predicted single message length:
+    <li>Predicted number of messages:
+    </ul>-->
+    <input id="submit-button" type="submit" value="Submit" id="submit-button"/>
+    </form>
+
+</div>
+
+</body>

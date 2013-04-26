@@ -293,8 +293,6 @@ class HttpTransport(Transport):
       status = self.__get_rpc_status(response, content)
       rpc.set_status(status)
 
-    connection.close()
-
   def _start_rpc(self, remote_info, request):
     """Start a remote procedure call.
 
@@ -330,15 +328,12 @@ class HttpTransport(Transport):
       return rpc
     except remote.RpcError:
       # Pass through all ProtoRPC errors
-      connection.close()
       raise
     except socket.error, err:
-      connection.close()
       raise remote.NetworkError('Socket error: %s %r' % (type(err).__name__,
                                                          err.args),
                                 err)
     except Exception, err:
-      connection.close()
       raise remote.NetworkError('Error communicating with HTTP server',
                                 err)
 

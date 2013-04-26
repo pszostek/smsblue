@@ -62,10 +62,9 @@ from google.net.proto2.python.public import text_format
 _FieldDescriptor = descriptor_mod.FieldDescriptor
 
 
-def NewMessage(bases, descriptor, dictionary):
+def NewMessage(descriptor, dictionary):
   _AddClassAttributesForNestedExtensions(descriptor, dictionary)
   _AddSlots(descriptor, dictionary)
-  return bases
 
 
 def InitMessage(descriptor, cls):

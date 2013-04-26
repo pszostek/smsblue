@@ -84,8 +84,8 @@ def GenerateIndexFromHistory(query_history,
   for query, count in query_history.iteritems():
     required, kind, ancestor, props = (
         datastore_index.CompositeIndexForQuery(query))
+    props = datastore_index.GetRecommendedIndexProperties(props)
     if required:
-      props = datastore_index.GetRecommendedIndexProperties(props)
       key = (kind, ancestor, props)
       if key not in manual_keys:
         if key in indexes:
@@ -229,12 +229,10 @@ class IndexYamlUpdater(object):
 
 
     if index_yaml_data is None:
-      manual_part, prev_automatic_part = 'indexes:\n', ''
+      manual_part, automatic_part = 'indexes:\n', ''
       manual_indexes = None
     else:
-      manual_part, prev_automatic_part = index_yaml_data.split(AUTO_MARKER, 1)
-      if prev_automatic_part.startswith(AUTO_COMMENT):
-        prev_automatic_part = prev_automatic_part[len(AUTO_COMMENT):]
+      manual_part, automatic_part = index_yaml_data.split(AUTO_MARKER, 1)
 
       try:
         manual_indexes = datastore_index.ParseIndexDefinitions(manual_part)
@@ -249,8 +247,7 @@ class IndexYamlUpdater(object):
 
 
 
-    if (index_yaml_mtime is None and automatic_part == '' or
-        automatic_part == prev_automatic_part):
+    if index_yaml_mtime is None and automatic_part == '':
       logging.debug('No need to update index.yaml')
       return
 

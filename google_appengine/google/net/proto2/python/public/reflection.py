@@ -45,14 +45,9 @@ _FieldDescriptor = descriptor_mod.FieldDescriptor
 
 
 if api_implementation.Type() == 'cpp':
-  if api_implementation.Version() == 2:
-    from google.net.proto2.python.internal.cpp import cpp_message
-    _NewMessage = cpp_message.NewMessage
-    _InitMessage = cpp_message.InitMessage
-  else:
-    from google.net.proto2.python.internal import cpp_message
-    _NewMessage = cpp_message.NewMessage
-    _InitMessage = cpp_message.InitMessage
+  from google.net.proto2.python.internal import cpp_message
+  _NewMessage = cpp_message.NewMessage
+  _InitMessage = cpp_message.InitMessage
 else:
   from google.net.proto2.python.internal import python_message
   _NewMessage = python_message.NewMessage
@@ -108,7 +103,7 @@ class GeneratedProtocolMessageType(type):
       Newly-allocated class.
     """
     descriptor = dictionary[GeneratedProtocolMessageType._DESCRIPTOR_KEY]
-    bases = _NewMessage(bases, descriptor, dictionary)
+    _NewMessage(descriptor, dictionary)
     superclass = super(GeneratedProtocolMessageType, cls)
 
     new_class = superclass.__new__(cls, name, bases, dictionary)

@@ -564,14 +564,13 @@ class DatastoreFileStub(datastore_stub_util.BaseDatastore,
     finally:
       self.__file_lock.release()
 
-  def MakeSyncCall(self, service, call, request, response, request_id=None):
+  def MakeSyncCall(self, service, call, request, response):
     """ The main RPC entry point. service must be 'datastore_v3'."""
     self.assertPbIsInitialized(request)
     super(DatastoreFileStub, self).MakeSyncCall(service,
                                                 call,
                                                 request,
-                                                response,
-                                                request_id)
+                                                response)
     self.assertPbIsInitialized(response)
 
   def assertPbIsInitialized(self, pb):

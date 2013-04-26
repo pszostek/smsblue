@@ -26,12 +26,12 @@ import time
 
 
 
-REQUEST_LOG_ID = 'REQUEST_LOG_ID'
+REQUEST_KEY = 'REQUEST_ID_HASH'
 
 
 def RequestID():
   """Returns the ID of the current request assigned by App Engine."""
-  return os.environ.get(REQUEST_LOG_ID, None)
+  return os.environ.get(REQUEST_KEY, None)
 
 
 def ParseLogEntry(entry):

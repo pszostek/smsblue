@@ -81,12 +81,6 @@ _MAX_LINK_PROPERTY_LENGTH = 2083
 
 
 
-_MAX_RAW_PROPERTY_BYTES = 1000 * 1000
-
-
-
-
-
 
 
 RESERVED_PROPERTY_NAME = re.compile('^__.*__$')
@@ -1426,26 +1420,26 @@ def ValidatePropertyKey(name, value):
 _VALIDATE_PROPERTY_VALUES = {
   Blob: ValidatePropertyNothing,
   EmbeddedEntity: ValidatePropertyNothing,
-  ByteString: ValidatePropertyNothing,
+  ByteString: ValidatePropertyString,
   bool: ValidatePropertyNothing,
-  Category: ValidatePropertyNothing,
+  Category: ValidatePropertyString,
   datetime.datetime: ValidatePropertyNothing,
   _OverflowDateTime: ValidatePropertyInteger,
-  Email: ValidatePropertyNothing,
+  Email: ValidatePropertyString,
   float: ValidatePropertyNothing,
   GeoPt: ValidatePropertyNothing,
-  IM: ValidatePropertyNothing,
+  IM: ValidatePropertyString,
   int: ValidatePropertyInteger,
   Key: ValidatePropertyKey,
-  Link: ValidatePropertyNothing,
+  Link: ValidatePropertyLink,
   long: ValidatePropertyInteger,
-  PhoneNumber: ValidatePropertyNothing,
-  PostalAddress: ValidatePropertyNothing,
+  PhoneNumber: ValidatePropertyString,
+  PostalAddress: ValidatePropertyString,
   Rating: ValidatePropertyInteger,
-  str: ValidatePropertyNothing,
+  str: ValidatePropertyString,
   Text: ValidatePropertyNothing,
   type(None): ValidatePropertyNothing,
-  unicode: ValidatePropertyNothing,
+  unicode: ValidatePropertyString,
   users.User: ValidatePropertyNothing,
   BlobKey: ValidatePropertyNothing,
 }

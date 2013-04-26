@@ -160,4 +160,4 @@ if __name__ == "__main__":
     l = g.parse(f)
     for d in l:
         for h in d.hours:
-            print d.date, d.name, h.hour, str(h.weather)
+            print d.date, d.name, h, str(d.hours[h])

@@ -1254,8 +1254,7 @@ class HardenedModulesHook(object):
           if 'django' not in self._module_dict:
             version = libentry.version
             if version == 'latest':
-              django_library = appinfo._NAME_TO_SUPPORTED_LIBRARY['django']
-              version = django_library.non_deprecated_versions[-1]
+              version = appinfo.SUPPORTED_LIBRARIES['django'][-1]
             if google.__name__.endswith('3'):
 
 

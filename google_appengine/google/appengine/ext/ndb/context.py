@@ -126,7 +126,7 @@ class AutoBatcher(object):
     fut = self._todo_tasklet(todo, options)
     self._running.append(fut)
     # Add a callback when we're done.
-    fut.add_callback(self._finished_callback, fut, todo)
+    fut.add_callback(self._finished_callback, fut)
 
   def _on_idle(self):
     if not self.action():
@@ -165,14 +165,9 @@ class AutoBatcher(object):
     self.run_queue(options, todo)
     return True
 
-  def _finished_callback(self, fut, todo):
+  def _finished_callback(self, fut):
     self._running.remove(fut)
-    err = fut.get_exception()
-    if err is not None:
-      tb = fut.get_traceback()
-      for (f, _) in todo:
-        if not f.done():
-          f.set_exception(err, tb)
+    fut.check_success()
 
   @tasklets.tasklet
   def flush(self):
@@ -647,18 +642,12 @@ class Context(object):
       if use_memcache and mvalue != _LOCKED:
         # Don't serialize the key since it's already the memcache key.
         pbs = entity._to_pb(set_key=False).SerializePartialToString()
-        # Don't attempt to write to memcache if too big.  Note that we
-        # use LBYL ("look before you leap") because a multi-value
-        # memcache operation would fail for all entities rather than
-        # for just the one that's too big.  (Also, the AutoBatcher
-        # class doesn't pass back exceptions very well.)
-        if len(pbs) <= memcache.MAX_VALUE_SIZE:
-          timeout = self._get_memcache_timeout(key, options)
-          # Don't use fire-and-forget -- for users who forget
-          # @ndb.toplevel, it's too painful to diagnose why their simple
-          # code using a single synchronous call doesn't seem to use
-          # memcache.  See issue 105.  http://goo.gl/JQZxp
-          yield self.memcache_cas(mkey, pbs, time=timeout, namespace=ns)
+        timeout = self._get_memcache_timeout(key, options)
+        # Don't use fire-and-forget -- for users who forget
+        # @ndb.toplevel, it's too painful to diagnose why their simple
+        # code using a single synchronous call doesn't seem to use
+        # memcache.  See issue 105.  http://goo.gl/JQZxp
+        yield self.memcache_cas(mkey, pbs, time=timeout, namespace=ns)
 
     if use_cache:
       # Cache hit or miss.  NOTE: In this case it is okay to cache a
@@ -690,12 +679,6 @@ class Context(object):
                                   namespace=ns, use_cache=True)
         else:
           pbs = entity._to_pb(set_key=False).SerializePartialToString()
-          # If the byte string to be written is too long for memcache,
-          # raise ValueError.  (See LBYL explanation in get().)
-          if len(pbs) > memcache.MAX_VALUE_SIZE:
-            raise ValueError('Values may not be more than %d bytes in length; '
-                             'received %d bytes' % (memcache.MAX_VALUE_SIZE,
-                                                    len(pbs)))
           timeout = self._get_memcache_timeout(key, options)
           yield self.memcache_set(mkey, pbs, time=timeout, namespace=ns)
 

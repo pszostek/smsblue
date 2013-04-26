@@ -195,8 +195,6 @@ class HttpRpcServerHttpLib2(object):
 
     headers['X-appcfg-api-version'] = '1'
 
-    payload = payload or ''
-
     headers['content-length'] = str(len(payload))
     if self.host_override:
       headers['Host'] = self.host_override

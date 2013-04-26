@@ -101,9 +101,6 @@ class ClientLoginError(urllib2.HTTPError):
 class AbstractRpcServer(object):
   """Provides a common interface for a simple RPC server."""
 
-
-  SUGGEST_OAUTH2 = False
-
   def __init__(self, host, auth_function, user_agent, source,
                host_override=None, extra_headers=None, save_cookies=False,
                auth_tries=3, account_type=None, debug_data=True, secure=True,
@@ -291,14 +288,6 @@ class AbstractRpcServer(object):
                                  "of your regular account password.")
             print >>sys.stderr, ("See http://www.google.com/"
                                  "support/accounts/bin/answer.py?answer=185833")
-
-
-
-            if self.SUGGEST_OAUTH2:
-              print >>sys.stderr, ("However, now the recommended way to log in "
-                                   "is using OAuth2. See")
-              print >>sys.stderr, ("https://developers.google.com/appengine/"
-                                   "docs/python/tools/uploadinganapp#oauth")
           else:
             print >>sys.stderr, "Invalid username or password."
           continue
@@ -494,14 +483,3 @@ To learn more, see https://developers.google.com/appengine/kb/general#rpcssl""")
 
     opener.add_handler(urllib2.HTTPCookieProcessor(self.cookie_jar))
     return opener
-
-
-
-class HttpRpcServerWithOAuth2Suggestion(HttpRpcServer):
-  """An HttpRpcServer variant which suggests using OAuth2 instead of ASP.
-
-  Not all systems which use HttpRpcServer can use OAuth2.
-  """
-
-  SUGGEST_OAUTH2 = True
-
